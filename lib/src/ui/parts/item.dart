@@ -409,10 +409,7 @@ class ItemWidgetState extends State<ItemWidget>
     TextStyle? textStyle = Theme.of(context).textTheme.bodyLarge;
     if (selectedIndex == i) {
       textStyle = textStyle?.copyWith(
-        fontWeight: FontWeight.bold,
-        fontSize: 17,
-        color: widget.textColor?.withOpacity(isTextEditing ? 0.0 : 1.0),
-      );
+          fontWeight: FontWeight.bold, fontSize: 17, color: Colors.white);
     } else {
       textStyle = textStyle?.copyWith(
         fontWeight: FontWeight.bold,

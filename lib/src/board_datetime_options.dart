@@ -21,6 +21,7 @@ class BoardDateTimeOptions {
     this.inputable = true,
     this.withSecond = false,
     this.topMargin = 20,
+    this.checkMarkIconColor,
   });
 
   /// #### Picker Background Color
@@ -40,6 +41,8 @@ class BoardDateTimeOptions {
   /// in the calendar as a color to indicate the selection status.
   /// If not specified, `Theme.of(context).primaryColor` color by default.
   final Color? activeColor;
+
+  final Color? checkMarkIconColor;
 
   /// #### Active Text Color
   /// activeColor is used as the background color and activeTextColor as the text color.

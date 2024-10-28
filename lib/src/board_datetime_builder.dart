@@ -418,6 +418,7 @@ class _SingleBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
       withTextField: widget.withTextField,
       pickerFocusNode: widget.pickerFocusNode,
       topMargin: widget.options.topMargin,
+      checkMarkIconColor: widget.options.checkMarkIconColor,
     );
   }
 }

@@ -218,6 +218,9 @@ class PickerItemWidget extends StatelessWidget {
               pickerFormat: PickerFormat.ymd,
               // boardTitle: 'Board Picker',
               // pickerSubTitles: BoardDateTimeItemTitles(year: 'year'),
+              activeColor: Colors.white,
+              activeTextColor: Color(0xFF1B61CB),
+              foregroundColor: Color(0xFF1B61CB),
               withSecond: DateTimePickerType.time == pickerType,
               customOptions: DateTimePickerType.time == pickerType
                   ? BoardPickerCustomOptions(

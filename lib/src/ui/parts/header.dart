@@ -33,6 +33,7 @@ class BoardDateTimeHeader extends StatefulWidget {
     required this.withTextField,
     required this.pickerFocusNode,
     required this.topMargin,
+    this.checkMarkIconColor,
   });
 
   /// Wide mode display flag
@@ -78,6 +79,9 @@ class BoardDateTimeHeader extends StatefulWidget {
 
   /// Active Color
   final Color activeColor;
+
+  /// CheckMark Icon Color
+  final Color? checkMarkIconColor;
 
   /// Active Text Color
   final Color activeTextColor;
@@ -182,7 +186,7 @@ class BoardDateTimeHeaderState extends State<BoardDateTimeHeader> {
                     widget.onClose();
                   },
                   icon: const Icon(Icons.check_circle_rounded),
-                  color: widget.activeColor,
+                  color: widget.checkMarkIconColor ?? widget.activeColor,
                 )
               : Opacity(
                   opacity: 0.6,
@@ -227,9 +231,10 @@ class BoardDateTimeHeaderState extends State<BoardDateTimeHeader> {
                     ? Icons.view_day_rounded
                     : Icons.calendar_month_rounded,
                 size: 20,
+                color: widget.checkMarkIconColor ?? widget.activeColor,
               ),
             ),
-            color: widget.textColor,
+            color: widget.checkMarkIconColor ?? widget.activeColor,
           ),
         ),
       if (today.isWithinRange(widget.minimumDate, widget.maximumDate))
