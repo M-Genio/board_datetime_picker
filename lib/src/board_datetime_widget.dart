@@ -354,7 +354,7 @@ class _SingleBoardDateTimeWidgetState
       headerWidget: widget.headerWidget,
       modal: true,
       onCloseModal: () {
-        // Navigator.of(context).pop(date);
+        Navigator.of(context).pop(date);
       },
       onUpdateByClose: (val, val2) {
         date = val;
