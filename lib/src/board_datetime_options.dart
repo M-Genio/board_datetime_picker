@@ -22,6 +22,8 @@ class BoardDateTimeOptions {
     this.withSecond = false,
     this.topMargin = 20,
     this.checkMarkIconColor,
+    this.errorText,
+    this.errorTextStyle,
   });
 
   /// #### Picker Background Color
@@ -101,6 +103,12 @@ class BoardDateTimeOptions {
 
   /// BoardTitle text style
   final TextStyle? boardTitleTextStyle;
+
+  /// Title to be displayed at the top of the picker
+  final String? errorText;
+
+  /// error text style
+  final TextStyle? errorTextStyle;
 
   /// You can specify a subtitle for each item in the picker.
   /// Default is unspecified and no subtitle is displayed.

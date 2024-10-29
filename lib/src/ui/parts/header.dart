@@ -481,14 +481,45 @@ class TopTitleWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 20, left: 8, right: 8),
       alignment: Alignment.center,
-      child: Text(
-        options.boardTitle ?? '',
-        style: options.boardTitleTextStyle ??
-            Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: options.getTextColor(context),
-                  fontWeight: FontWeight.bold,
-                ),
-        maxLines: 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            options.boardTitle ?? '',
+            style: options.boardTitleTextStyle ??
+                Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: options.getTextColor(context),
+                      fontWeight: FontWeight.bold,
+                    ),
+            maxLines: 1,
+          ),
+          if (options.errorText != null) ...[
+            const SizedBox(
+              height: 6,
+            ),
+            RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    text: "Error: ",
+                    style: options.errorTextStyle ??
+                        Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: Colors.red,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                    children: [
+                      TextSpan(
+                        text: options.errorText ?? '',
+                        style: options.errorTextStyle ??
+                            Theme.of(context).textTheme.labelSmall?.copyWith(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ),
+                    ])),
+          ]
+        ],
       ),
     );
   }
