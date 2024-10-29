@@ -494,7 +494,7 @@ class TopTitleWidget extends StatelessWidget {
                     ),
             maxLines: 1,
           ),
-          if (options.errorText != null) ...[
+          if (options.errorText != null && options.errorText!.isNotEmpty) ...[
             const SizedBox(
               height: 6,
             ),
