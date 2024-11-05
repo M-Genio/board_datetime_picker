@@ -210,7 +210,10 @@ class PickerItemWidget extends StatelessWidget {
           final result = await showBoardDateTimePicker(
             context: context,
             pickerType: pickerType,
-            // initialDate: DateTime.now(),
+
+            minimumDate: DateTime.now(),
+            initialDate: DateTime.now(),
+            maximumDate: DateTime(DateTime.now().year + 1),
             // minimumDate: DateTime.now().add(const Duration(days: 1)),
             options: BoardDateTimeOptions(
               languages: const BoardPickerLanguages.en(),
@@ -221,12 +224,14 @@ class PickerItemWidget extends StatelessWidget {
               activeColor: Colors.white,
               activeTextColor: Color(0xFF1B61CB),
               foregroundColor: Color(0xFF1B61CB),
-              withSecond: DateTimePickerType.time == pickerType,
-              customOptions: DateTimePickerType.time == pickerType
-                  ? BoardPickerCustomOptions(
-                      seconds: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
-                    )
-                  : null,
+
+              // withSecond: DateTimePickerType.time == pickerType,
+              // customOptions: DateTimePickerType.time == pickerType
+              //     ? BoardPickerCustomOptions(
+              //         seconds: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
+              //       )
+              //     : null,
+              customOptions: BoardPickerCustomOptions.every15minutes(),
             ),
             // Specify if you want changes in the picker to take effect immediately.
             valueNotifier: date,

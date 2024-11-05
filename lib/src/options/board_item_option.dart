@@ -15,8 +15,9 @@ BoardPickerItemOption initItemOption(
   DateTime? maximum,
   List<int>? customList,
   String? subTitle,
-  bool withSecond,
-) {
+  bool withSecond, {
+  bool? withEvery15Minutes = false,
+}) {
   if (customList != null && customList.isNotEmpty) {
     return BoardPickerCustomItemOption.init(
       type,
@@ -26,6 +27,7 @@ BoardPickerItemOption initItemOption(
       maximum,
       subTitle,
       withSecond: withSecond,
+      withEvery15Minutes: withEvery15Minutes!,
     );
   } else {
     return BoardPickerItemOption.init(
@@ -49,6 +51,7 @@ class BoardPickerItemOption {
     required this.maximumDate,
     required this.subTitle,
     required this.withSecond,
+    this.withEvery15Minutes = false,
   });
 
   /// [DateType] year, month, day, hour, minute
@@ -79,6 +82,10 @@ class BoardPickerItemOption {
   /// Specified by 0 if not specified
   final bool withSecond;
 
+  /// Flag indicating whether to specify mins
+  /// font style will be changed base don this condition for minutes.
+  final bool withEvery15Minutes;
+
   /// Constractor
   factory BoardPickerItemOption.init(
     DateType type,
@@ -87,6 +94,7 @@ class BoardPickerItemOption {
     DateTime? maximum,
     String? subTitle, {
     bool withSecond = false,
+    bool withEvery15Minutes = false,
   }) {
     Map<int, int> map = {};
     int selected;
@@ -215,7 +223,7 @@ class BoardPickerItemOption {
   }
 
   /// Get the currently selected value
-  int get value => map[selectedIndex]!;
+  int get value => map.isNotEmpty ? map[selectedIndex]! : 0;
 
   /// input content check
   void checkInputField() {

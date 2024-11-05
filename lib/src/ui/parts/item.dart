@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:board_datetime_picker/src/options/board_item_option.dart';
+import 'package:board_datetime_picker/src/utils/board_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -417,7 +418,18 @@ class ItemWidgetState extends State<ItemWidget>
         color: widget.textColor?.withOpacity(0.4),
       );
     }
-
+    if (widget.option.type == DateType.minute) {
+      return Center(
+        child: Text(
+          widget.option.withEvery15Minutes
+              ? '${map[i]} - ${map[i]! + 15}'
+              : '${map[i]}',
+          style: widget.option.withEvery15Minutes
+              ? textStyle!.copyWith(fontSize: 10)
+              : textStyle,
+        ),
+      );
+    }
     return Center(
       child: Text(
         '${map[i]}',

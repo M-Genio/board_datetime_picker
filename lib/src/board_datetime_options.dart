@@ -221,6 +221,9 @@ class BoardPickerCustomOptions {
   /// List to be displayed in the picker of the minute.
   final List<int> minutes;
 
+  /// List to be displayed in the picker of the minute.
+  final bool isEvery15Minutes;
+
   /// List to be displayed in the picker of the second.
   final List<int> seconds;
 
@@ -231,11 +234,13 @@ class BoardPickerCustomOptions {
     this.hours = const [],
     this.minutes = const [],
     this.seconds = const [],
+    this.isEvery15Minutes = false,
   });
 
   /// Picker display every 15 minutes
   factory BoardPickerCustomOptions.every15minutes() => BoardPickerCustomOptions(
         minutes: [0, 15, 30, 45],
+        isEvery15Minutes: true,
       );
 }
 

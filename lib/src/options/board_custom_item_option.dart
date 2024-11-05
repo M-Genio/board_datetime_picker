@@ -9,17 +9,17 @@ import 'board_item_option.dart';
 /// Options for customizing the items displayed in the picker.
 /// Create at each date and time.
 class BoardPickerCustomItemOption extends BoardPickerItemOption {
-  BoardPickerCustomItemOption({
-    required super.type,
-    required this.customList,
-    required super.focusNode,
-    required super.map,
-    required super.selectedIndex,
-    required super.minimumDate,
-    required super.maximumDate,
-    required super.subTitle,
-    required super.withSecond,
-  });
+  BoardPickerCustomItemOption(
+      {required super.type,
+      required this.customList,
+      required super.focusNode,
+      required super.map,
+      required super.selectedIndex,
+      required super.minimumDate,
+      required super.maximumDate,
+      required super.subTitle,
+      required super.withSecond,
+      required super.withEvery15Minutes});
 
   final List<int> customList;
 
@@ -31,6 +31,7 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
     DateTime? maximum,
     String? subTitle, {
     bool withSecond = false,
+    bool withEvery15Minutes = false,
   }) {
     Map<int, int> map = {};
     int selected;
@@ -51,9 +52,16 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
       int count = 0;
       for (var i = 0; i < values.length; i++) {
         final val = values[i];
-        if (customList.contains(val)) {
-          map[count] = val;
-          count++;
+        for (var start in customList) {
+          // Define the end of the interval
+          int end = start + 15;
+
+          // Check if valu falls within the current interval
+          if (val >= start && val < end && !map.values.contains(start)) {
+            map[count] = start; // Assign valu to the map at index count
+            count++; // Increment the count
+            break; // Exit the loop as we found the value
+          }
         }
       }
     }
@@ -84,16 +92,16 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
     }
 
     return BoardPickerCustomItemOption(
-      type: type,
-      focusNode: PickerItemFocusNode(),
-      map: map,
-      selectedIndex: selected,
-      minimumDate: mi,
-      maximumDate: ma,
-      customList: customList,
-      subTitle: subTitle,
-      withSecond: withSecond,
-    );
+        type: type,
+        focusNode: PickerItemFocusNode(),
+        map: map,
+        selectedIndex: selected,
+        minimumDate: mi,
+        maximumDate: ma,
+        customList: customList,
+        subTitle: subTitle,
+        withSecond: withSecond,
+        withEvery15Minutes: withEvery15Minutes);
   }
 
   @override
@@ -114,9 +122,16 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
     int count = 0;
     for (var i = 0; i < values.length; i++) {
       final val = values[i];
-      if (customList.contains(val)) {
-        newMap[count] = val;
-        count++;
+      for (var start in customList) {
+        // Define the end of the interval
+        int end = start + 15;
+
+        // Check if valu falls within the current interval
+        if (val >= start && val < end && !newMap.values.contains(start)) {
+          newMap[count] = start; // Assign valu to the map at index count
+          count++; // Increment the count
+          break; // Exit the loop as we found the value
+        }
       }
     }
     map = newMap;
@@ -151,9 +166,16 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
     Map<int, int> newMap = {};
     int index = 0;
     for (var i = minDay; i <= maxDay; i++) {
-      if (customList.contains(i)) {
-        newMap[index] = i;
-        index++;
+      for (var start in customList) {
+        // Define the end of the interval
+        int end = start + 15;
+
+        // Check if valu falls within the current interval
+        if (i >= start && i < end && !newMap.values.contains(start)) {
+          newMap[index] = start; // Assign valu to the map at index count
+          index++; // Increment the count
+          break; // Exit the loop as we found the value
+        }
       }
     }
     map = newMap;

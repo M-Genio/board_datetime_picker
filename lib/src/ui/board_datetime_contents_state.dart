@@ -317,6 +317,7 @@ abstract class BoardDatetimeContentState<T extends BoardDateTimeCommonResult,
           opts?.minutes,
           widget.options.getSubTitle(DateType.minute),
           withSecond,
+          withEvery15Minutes: opts?.isEvery15Minutes,
         ),
       ],
       if (DateTimePickerType.time == type && widget.options.withSecond)
