@@ -330,7 +330,10 @@ class _SingleBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
       maximumDate: widget.maximumDate,
       multiple: false,
       headerBuilder: (ctx) => _header,
-      onChange: changeDate,
+      onChange: (value) {
+        changeDate(value);
+        onCalendar();
+      },
       onChangeByPicker: onChangeByPicker,
       onKeyboadClose: closeKeyboard,
       keyboardHeightRatio: () => keyboardHeightRatio,
@@ -364,20 +367,20 @@ class _SingleBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
     );
   }
 
-  Widget get _header {
-    void onCalendar() {
-      if (calendarAnimationController.value == 0.0) {
-        for (final x in itemOptions) {
-          if (x.focusNode.hasFocus) {
-            x.focusNode.unfocus();
-          }
+  void onCalendar() {
+    if (calendarAnimationController.value == 0.0) {
+      for (final x in itemOptions) {
+        if (x.focusNode.hasFocus) {
+          x.focusNode.unfocus();
         }
-        calendarAnimationController.forward();
-      } else if (calendarAnimationController.value == 1.0) {
-        calendarAnimationController.reverse();
       }
+      calendarAnimationController.forward();
+    } else if (calendarAnimationController.value == 1.0) {
+      calendarAnimationController.reverse();
     }
+  }
 
+  Widget get _header {
     if (!widget.options.showDateButton) {
       return BoardDateTimeNoneButtonHeader(
         options: widget.options,
