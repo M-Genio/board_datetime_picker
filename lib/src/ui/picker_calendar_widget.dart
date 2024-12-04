@@ -1,8 +1,10 @@
 import 'package:board_datetime_picker/src/options/board_item_option.dart';
+import 'package:board_datetime_picker/src/ui/board_datetime_contents_state.dart';
 import 'package:board_datetime_picker/src/ui/parts/calendar.dart';
 import 'package:board_datetime_picker/src/ui/parts/during_calendar.dart';
 import 'package:board_datetime_picker/src/ui/parts/item.dart';
 import 'package:board_datetime_picker/src/utils/board_datetime_options_extension.dart';
+import 'package:board_datetime_picker/src/utils/board_datetime_result.dart';
 import 'package:board_datetime_picker/src/utils/datetime_util.dart';
 import 'package:flutter/material.dart';
 
@@ -379,6 +381,18 @@ class _PickerCalendarStandardWidgetState
                   ),
                 ),
               ),
+              // SaveButton(
+              //   defaultTime: args.dateState.value,
+              //   activeTextColor: args.options.activeColor!,
+              //   minimumDate: args.minimumDate ?? DateTimeUtil.defaultMinDate,
+              //   maximumDate: args.maximumDate ?? DateTimeUtil.defaultMaxDate,
+              //   breakpoint: 800,
+              //   options: args.options,
+              //   modal: true,
+              //   pickerType: args.pickerType,
+              //   headerWidget: null,
+              // ),
+
               // Menu when keyboard is displayed
               keyboardMenu(isWide: false),
             ],
@@ -410,5 +424,57 @@ class _PickerCalendarStandardWidgetState
         ),
       ],
     );
+  }
+}
+
+class SaveButton<T extends BoardDateTimeCommonResult>
+    extends BoardDateTimeContent<T> {
+  const SaveButton({
+    super.key,
+    required super.pickerType,
+    required super.minimumDate,
+    required super.maximumDate,
+    required super.breakpoint,
+    required super.options,
+    required super.headerWidget,
+    required super.modal,
+    required this.activeTextColor,
+    required this.defaultTime,
+  });
+  final Color activeTextColor;
+  final DateTime defaultTime;
+
+  @override
+  State<SaveButton> createState() => _SaveButtonState();
+}
+
+class _SaveButtonState<T extends BoardDateTimeCommonResult>
+    extends BoardDatetimeContentState<T, SaveButton<T>> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: widget.activeTextColor,
+      ),
+      onPressed: () => close(),
+      child: const Text("Save"),
+    );
+  }
+
+  late ValueNotifier<DateTime> dateState;
+  @override
+  DateTime get currentDate => dateState.value;
+
+  @override
+  DateTime? get defaultDate => widget.minimumDate;
+
+  @override
+  void onChanged(DateTime date, T result) {
+    // TODO: implement onChanged
+  }
+
+  @override
+  void setNewValue(DateTime val, {bool byPicker = false}) {
+    // TODO: implement setNewValue
   }
 }
