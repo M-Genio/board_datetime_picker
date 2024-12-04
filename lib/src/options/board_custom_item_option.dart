@@ -57,13 +57,8 @@ class BoardPickerCustomItemOption extends BoardPickerItemOption {
           int end = start + 15;
 
           // Check if valu falls within the current interval
-          if (val >= start && val < end && !map.values.contains(end)) {
-            if (val >= 45 && val < 60) {
-              map[count] =
-                  customList[0]; // Assign value to the map at index count
-            } else {
-              map[count] = end; // Assign value to the map at index count
-            }
+          if (val >= start && val < end && !map.values.contains(start)) {
+            map[count] = start; // Assign valu to the map at index count
             count++; // Increment the count
             break; // Exit the loop as we found the value
           }
