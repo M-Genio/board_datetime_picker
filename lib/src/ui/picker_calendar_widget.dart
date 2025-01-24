@@ -223,13 +223,16 @@ abstract class PickerCalendarState<T extends PickerCalendarWidget>
 }
 
 class PickerCalendarWideWidget extends PickerCalendarWidget {
-  const PickerCalendarWideWidget({
-    super.key,
-    required super.arguments,
-    required this.closeKeyboard,
-  });
+  const PickerCalendarWideWidget(
+      {super.key,
+      required super.arguments,
+      required this.closeKeyboard,
+      required this.onClose,
+      this.modal = false});
 
   final void Function() closeKeyboard;
+  final void Function() onClose;
+  final bool modal;
 
   @override
   PickerCalendarState<PickerCalendarWideWidget> createState() =>
@@ -264,7 +267,11 @@ class _PickerCalendarWideWidgetState
       height += 40;
       wrap = Column(
         children: [
-          TopTitleWidget(options: args.options),
+          TopTitleWidget(
+            options: args.options,
+            onClose: widget.onClose,
+            modal: widget.modal,
+          ),
           Expanded(child: child),
         ],
       );
@@ -325,11 +332,15 @@ class PickerCalendarStandardWidget extends PickerCalendarWidget {
     required this.calendarAnimationController,
     required this.calendarAnimation,
     required this.pickerFormAnimation,
+    required this.onClose,
+    this.modal = false,
   });
 
   final AnimationController calendarAnimationController;
   final Animation<double> calendarAnimation;
   final Animation<double> pickerFormAnimation;
+  final void Function() onClose;
+  final bool modal;
 
   @override
   PickerCalendarState<PickerCalendarStandardWidget> createState() =>
@@ -374,7 +385,11 @@ class _PickerCalendarStandardWidgetState
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (args.options.isTopTitleHeader)
-                        TopTitleWidget(options: args.options),
+                        TopTitleWidget(
+                          options: args.options,
+                          onClose: widget.onClose,
+                          modal: widget.modal,
+                        ),
                       args.headerBuilder(context),
                       Expanded(child: contents()),
                     ],

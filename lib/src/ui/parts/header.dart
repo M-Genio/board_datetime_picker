@@ -472,9 +472,16 @@ class _BoardDateTimeNoneButtonHeaderState
 }
 
 class TopTitleWidget extends StatelessWidget {
-  const TopTitleWidget({super.key, required this.options});
+  const TopTitleWidget({
+    super.key,
+    required this.options,
+    required this.onClose,
+    required this.modal,
+  });
 
   final BoardDateTimeOptions options;
+  final void Function() onClose;
+  final bool modal;
 
   @override
   Widget build(BuildContext context) {
@@ -485,14 +492,35 @@ class TopTitleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            options.boardTitle ?? '',
-            style: options.boardTitleTextStyle ??
-                Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: options.getTextColor(context),
-                      fontWeight: FontWeight.bold,
-                    ),
-            maxLines: 1,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Center(),
+              Text(
+                options.boardTitle ?? '',
+                style: options.boardTitleTextStyle ??
+                    Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: options.getTextColor(context),
+                          fontWeight: FontWeight.bold,
+                        ),
+                maxLines: 1,
+              ),
+              GestureDetector(
+                onTap: () {
+                  onClose();
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: options.activeTextColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              )
+            ],
           ),
           if (options.errorText != null && options.errorText!.isNotEmpty) ...[
             const SizedBox(

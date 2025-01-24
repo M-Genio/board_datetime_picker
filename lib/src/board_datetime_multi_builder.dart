@@ -196,7 +196,6 @@ class _MultiBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
         sizeFactor: animation,
         axis: Axis.vertical,
         axisAlignment: -1.0,
-        // child: isWide ? _widebuilder() : _standardBuilder(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -205,9 +204,13 @@ class _MultiBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
                 ? PickerCalendarWideWidget(
                     arguments: args,
                     closeKeyboard: closeKeyboard,
+                    onClose: close,
+                    modal: widget.modal,
                   )
                 : PickerCalendarStandardWidget(
                     arguments: args,
+                    modal: widget.modal,
+                    onClose: close,
                     calendarAnimationController: calendarAnimationController,
                     calendarAnimation: calendarAnimation,
                     pickerFormAnimation: pickerFormAnimation,

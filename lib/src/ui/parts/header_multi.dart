@@ -159,25 +159,6 @@ class _BoardDateTimeMultiHeaderState extends State<BoardDateTimeMultiHeader>
 
   @override
   Widget build(BuildContext context) {
-    final rightIcon = widget.modal
-        ? IconButton(
-            onPressed: () {
-              widget.onClose();
-            },
-            icon: const Icon(Icons.check_circle_rounded),
-            color: widget.activeColor,
-          )
-        : Opacity(
-            opacity: 0.6,
-            child: IconButton(
-              onPressed: () {
-                widget.onClose();
-              },
-              icon: const Icon(Icons.close_rounded),
-              color: widget.textColor,
-            ),
-          );
-
     final child = Container(
       height: widget.wide ? 64 : 52,
       margin: EdgeInsets.only(top: widget.topMargin, left: 8, right: 8),
@@ -254,14 +235,14 @@ class _BoardDateTimeMultiHeaderState extends State<BoardDateTimeMultiHeader>
               ),
             ),
           ),
-          GestureDetector(
-            child: Container(
-              width: 40,
-              alignment: Alignment.center,
-              child: rightIcon,
-            ),
-            onTap: () {},
-          ),
+          // GestureDetector(
+          //   child: Container(
+          //     width: 40,
+          //     alignment: Alignment.center,
+          //     child: rightIcon,
+          //   ),
+          //   onTap: () {},
+          // ),
         ],
       ),
     );

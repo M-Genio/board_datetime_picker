@@ -354,9 +354,13 @@ class _SingleBoardDateTimeContentState<T extends BoardDateTimeCommonResult>
                 ? PickerCalendarWideWidget(
                     arguments: args,
                     closeKeyboard: closeKeyboard,
+                    onClose: close,
+                    modal: widget.modal,
                   )
                 : PickerCalendarStandardWidget(
                     arguments: args,
+                    onClose: close,
+                    modal: widget.modal,
                     calendarAnimationController: calendarAnimationController,
                     calendarAnimation: calendarAnimation,
                     pickerFormAnimation: pickerFormAnimation,
