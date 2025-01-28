@@ -180,24 +180,24 @@ class BoardDateTimeHeaderState extends State<BoardDateTimeHeader> {
           //     ),
           //   ),
           // ),
-          widget.modal
-              ? IconButton(
-                  onPressed: () {
-                    widget.onClose();
-                  },
-                  icon: const Icon(Icons.check_circle_rounded),
-                  color: widget.checkMarkIconColor ?? widget.activeColor,
-                )
-              : Opacity(
-                  opacity: 0.6,
-                  child: IconButton(
-                    onPressed: () {
-                      widget.onClose();
-                    },
-                    icon: const Icon(Icons.close_rounded),
-                    color: widget.textColor,
-                  ),
-                ),
+          // widget.modal
+          //     ? IconButton(
+          //         onPressed: () {
+          //           widget.onClose();
+          //         },
+          //         icon: const Icon(Icons.check_circle_rounded),
+          //         color: widget.checkMarkIconColor ?? widget.activeColor,
+          //       )
+          //     : Opacity(
+          //         opacity: 0.6,
+          //         child: IconButton(
+          //           onPressed: () {
+          //             widget.onClose();
+          //           },
+          //           icon: const Icon(Icons.close_rounded),
+          //           color: widget.textColor,
+          //         ),
+          //       ),
         ],
       ),
     );
